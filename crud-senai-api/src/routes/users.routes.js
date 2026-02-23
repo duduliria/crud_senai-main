@@ -41,6 +41,9 @@ router.put("/:id", requireAdmin,async (req, res) => {
   res.json(result.data);
 });
 
+// eu sou maravilhoso
+
+
 // Apenas usuários com perfil ADMIN podem alterar status de usuários
 router.patch("/:id/status", requireAdmin, async (req, res) => {
   const parsed = updateStatusSchema.safeParse(req.body);

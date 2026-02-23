@@ -14,6 +14,8 @@ import { loginWithLock } from "../services/auth.service.js";
 // (verificação de token JWT) para rotas protegidas
 import { requireAuth } from "../middlewares/auth.middleware.js";
 
+// voce fez algo novo
+
 // Cria uma nova instância de router para definir as rotas de autenticação
 const router = Router();
 
