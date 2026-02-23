@@ -1,0 +1,257 @@
+/* ============================================================
+   VARIÁVEIS CSS (Custom Properties)
+   Define as cores e estilos principais do projeto
+   Facilita manutenção: para alterar cores, mude apenas aqui
+   ============================================================ */
+:root {
+  /* Cores de fundo */
+  --bg: #0f172a;          /* Fundo escuro principal */
+  --card: #111827;        /* Fundo dos cards/caixas */
+  
+  /* Cores de texto */
+  --text: #e5e7eb;        /* Texto principal (claro) */
+  --muted: #9ca3af;       /* Texto secundário (mais apagado) */
+  
+  /* Cores de status */
+  --primary: #22c55e;     /* Verde - cor principal (botões, destaque) */
+  --danger: #ef4444;      /* Vermelho - para ações perigosas */
+  --warning: #f59e0b;     /* Laranja - para avisos */
+  
+  /* Outros */
+  --border: rgba(255,255,255,0.08);  /* Cor das bordas (semi-transparente) */
+}
+
+/* ============================================================
+   RESET E ESTILOS GLOBAIS
+   Aplicados em todos os elementos
+   ============================================================ */
+
+/* Reset universal: define box-sizing para todos os elementos */
+* { box-sizing: border-box; }
+
+/* Estilos da página inteira */
+body {
+  margin: 0;
+  /* Font stack: usa a fonte do sistema se disponível */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  
+  /* Fundo com gradiente radial (efeito visual bonito) */
+  background: radial-gradient(1200px 700px at 20% 10%, #1f2937, transparent),
+              radial-gradient(900px 500px at 80% 30%, #0b3b2a, transparent),
+              var(--bg);
+  color: var(--text);
+}
+
+/* ============================================================
+   LAYOUT CONTAINER
+   Define a largura e espaçamento dos elementos principais
+   ============================================================ */
+
+/* Container principal - centraliza e define largura máxima */
+.container {
+  max-width: 1600px;       /* Largura máxima */
+  margin: 0 auto;         /* Centraliza (auto margem lateral) */
+  padding: 24px;          /* Espaço interno */
+}
+
+/* Card - estilo das caixas/painéis */
+.card {
+  background: rgba(17, 24, 39, 0.85);  /* Fundo semi-transparente */
+  border: 1px solid var(--border);     /* Borda fina */
+  border-radius: 14px;                 /* Cantos arredondados */
+  padding: 18px;                       /* Espaço interno */
+  backdrop-filter: blur(8px);          /* Efeito blur de fundo */
+}
+
+/* Flex row - agrupa itens em linha */
+.row { 
+  display: flex; 
+  gap: 16px;        /* Espaço entre itens */
+  flex-wrap: wrap;  /* Quebra para linha se precisar */
+}
+
+/* Coluna - cada coluna toma espaço flexível */
+.col { 
+  flex: 1;          /* Cresce igualmente com outros .col */
+  min-width: 280px; /* Largura mínima (para responsivo) */
+}
+
+/* ============================================================
+   TIPOGRAFIA
+   Títulos, parágrafos e textos
+   ============================================================ */
+
+/* Títulos (h1, h2) */
+h1, h2 { 
+  margin: 0 0 12px;  /* Remove margem padrão, adiciona margem inferior */
+}
+
+/* Parágrafos */
+p { 
+  color: var(--muted);  /* Usa cor secundária (mais apagado) */
+}
+
+/* ============================================================
+   FORMULÁRIO
+   Labels, inputs, selects
+   ============================================================ */
+
+/* Labels - descrição dos campos */
+label { 
+  display: block;       /* Nova linha */
+  margin: 10px 0 6px;   /* Espaço */
+  color: var(--muted);  /* Cor apagada */
+}
+
+/* Input e Select - campos de entrada */
+input, select {
+  width: 100%;                          /* Toma toda a largura */
+  padding: 10px 12px;                   /* Espaço interno */
+  border-radius: 10px;                  /* Cantos arredondados */
+  border: 1px solid var(--border);      /* Borda */
+  background: rgba(0,0,0,0.2);          /* Fundo escuro semi-transparente */
+  color: var(--text);                   /* Texto claro */
+  outline: none;                        /* Remove o outline padrão */
+}
+
+/* Estado focus (quando o campo está ativo/focado) */
+input:focus, select:focus { 
+  border-color: rgba(34,197,94,0.5);  /* Borda verde quando focado */
+}
+
+/* ============================================================
+   BOTÕES
+   Diferentes estilos de botões
+   ============================================================ */
+
+/* Estilos padrão de botão */
+button {
+  border: 0;              /* Remove borda */
+  padding: 10px 12px;     /* Espaço interno */
+  border-radius: 10px;    /* Cantos arredondados */
+  cursor: pointer;        /* Cursor de clique */
+  font-weight: 600;       /* Texto mais pesado/bold */
+}
+
+/* Botão primário - ação principal (verde) */
+.btn-primary { 
+  background: var(--primary);  /* Verde */
+  color: #052012;              /* Texto bem escuro para contraste */
+}
+
+/* Botão fantasma - ação secundária (transparent) */
+.btn-ghost { 
+  background: transparent;      /* Sem fundo */
+  color: var(--text);           /* Texto claro */
+  border: 1px solid var(--border);  /* Borda visível */
+}
+
+/* Botão perigo - ações destrutivas (vermelho) */
+.btn-danger { 
+  background: var(--danger);  /* Vermelho */
+  color: #fff;               /* Texto branco */
+}
+
+/* ============================================================
+   TOOLBAR
+   Barra de ferramentas (navegação, filtros)
+   ============================================================ */
+
+/* Toolbar - flexível, responsiva, com espaçamento */
+.toolbar { 
+  display: flex; 
+  gap: 10px;                    /* Espaço entre elementos */
+  align-items: center;          /* Alinha verticalmente */
+  justify-content: space-between;  /* Distribui espaço entre */
+  flex-wrap: wrap;              /* Quebra em mobile */
+}
+
+/* Texto pequeno - para descrições, hints */
+.small { 
+  font-size: 0.9rem;    /* 90% do tamanho */
+  color: var(--muted);  /* Cor apagada */
+}
+
+/* ============================================================
+   ALERTAS
+   Mensagens de sucesso, erro e aviso
+   ============================================================ */
+
+/* Estilos padrão de alerta */
+.alert {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* Alerta de sucesso (verde) */
+.alert.ok { 
+  border-color: rgba(34,197,94,0.35);   /* Borda verde com transparência */
+  background: rgba(34,197,94,0.08);     /* Fundo verde bem claro */
+}
+
+/* Alerta de erro (vermelho) */
+.alert.err { 
+  border-color: rgba(239,68,68,0.35);   /* Borda vermelha */
+  background: rgba(239,68,68,0.08);     /* Fundo vermelho bem claro */
+}
+
+/* Alerta de aviso (laranja) */
+.alert.warn { 
+  border-color: rgba(245,158,11,0.35);  /* Borda laranja */
+  background: rgba(245,158,11,0.08);    /* Fundo laranja bem claro */
+}
+
+/* ============================================================
+   TABELAS
+   Estilos para dados tabelares
+   ============================================================ */
+
+/* Tabela principal */
+table {
+  width: 100%;              /* Toma toda a largura */
+  border-collapse: collapse;  /* Remove espaço entre bordas */
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Células - header (th) e dados (td) */
+th, td {
+  padding: 10px 12px;           /* Espaço interno */
+  border-bottom: 1px solid var(--border);  /* Linha divisória */
+  text-align: left;             /* Alinha à esquerda */
+}
+
+/* Header da tabela (th) */
+th { 
+  color: var(--muted);                /* Cor apagada */
+  font-weight: 600;                   /* Texto mais pesado */
+  background: rgba(255,255,255,0.03); /* Fundo muito leve */
+}
+
+/* Efeito hover nas linhas (mouse over) */
+tr:hover td { 
+  background: rgba(255,255,255,0.02);  /* Fundo levemente mais claro */
+}
+
+/* ============================================================
+   BADGES
+   Pequenos rótulos/etiquetas (ex: ATIVO, INATIVO)
+   ============================================================ */
+
+/* Estilo de badge */
+.badge {
+  display: inline-block;    /* Inline mas com tamanho */
+  padding: 3px 10px;        /* Espaço interno pequeno */
+  border-radius: 999px;     /* Muito arredondado (pílula) */
+  font-size: 0.85rem;       /* Texto um pouco menor */
+  border: 1px solid var(--border);  /* Borda fina */
+}
+.badge.active { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.35); }
+.badge.inactive { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.35); }
+
+a { color: #86efac; text-decoration: none; }
+a:hover { text-decoration: underline; }

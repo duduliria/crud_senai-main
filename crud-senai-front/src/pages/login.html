@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- 
+  Página de LOGIN do Sistema CRUD SENAI
+  Permite que usuários autentiquem no sistema
+  
+  Funcionalidades:
+  - Autenticação com email e senha
+  - Botão "Esqueci a senha" (simulado)
+  - Bloqueio de conta após 3 tentativas
+  - Validação de email
+-->
+<html lang="pt-br">
+<head>
+  <!-- Define a codificação de caracteres -->
+  <meta charset="utf-8" />
+  <!-- Define comportamento responsivo (mobile-friendly) -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Título da página (exibido na aba do navegador) -->
+  <title>Login</title>
+  <!-- Importa o arquivo CSS com todos os estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <!-- Container principal (centralizado e com max-width) -->
+  <div class="container">
+    <!-- Card (caixa) que contém o formulário de login -->
+    <div class="card" style="max-width:520px;margin:40px auto;">
+      <!-- Título da página -->
+      <h1>🔐 Acesso ao Sistema</h1>
+      <!-- Informação para os alunos sobre a senha de teste -->
+      <p class="small">Para aula (simulação): senha correta é <b>123456</b>. Depois ligaremos no backend.</p>
+
+      <!-- Formulário de login -->
+      <form id="loginForm">
+        <!-- Campo de email -->
+        <label for="email">E-mail</label>
+        <input 
+          id="email" 
+          type="email" 
+          autocomplete="username" 
+          placeholder="ex: aluno@senai.com" 
+          required />
+
+        <!-- Campo de senha -->
+        <label for="password">Senha</label>
+        <input 
+          id="password" 
+          type="password" 
+          autocomplete="current-password" 
+          placeholder="••••••" 
+          required />
+
+        <!-- Botões de ação -->
+        <div class="row" style="margin-top:14px;">
+          <!-- Botão para fazer login -->
+          <button class="btn-primary" type="submit">Entrar</button>
+          <!-- Botão para recuperar senha (simulado) -->
+          <button class="btn-ghost" type="button" id="forgotBtn">Esqueci a senha</button>
+        </div>
+
+        <!-- Elemento para exibir mensagens (alertas) -->
+        <div id="alert" class="alert" hidden></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script JavaScript que inicializa a página -->
+  <script type="module">
+    // Importa e executa a função de inicialização da página de login
+    import { initLoginPage } from "../assets/js/auth.js";
+    initLoginPage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<!-- 
+  Página de USUÁRIOS do Sistema CRUD SENAI
+  Permite gerenciar (criar, editar, listar, buscar) usuários do sistema
+  
+  Funcionalidades:
+  - Formulário para criar/editar usuários
+  - Tabela com lista de usuários
+  - Botões para editar e ativar/inativar usuários
+  - Campo de busca/filtro
+  - Botão de logout
+-->
+<html lang="pt-br">
+<head>
+  <!-- Define a codificação de caracteres -->
+  <meta charset="utf-8" />
+  <!-- Define comportamento responsivo (mobile-friendly) -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Título da página -->
+  <title>Usuários</title>
+  <!-- Importa o arquivo CSS com todos os estilos -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <!-- Container principal -->
+  <div class="container">
+    <!-- TOOLBAR: Barra de ferramentas com título e controles -->
+    <div class="toolbar">
+      <!-- Lado esquerdo: Título e descrição -->
+      <div>
+        <h1>👥 Cadastro de Usuários</h1>
+        <p class="small">CRUD (simulação no front). Depois conectaremos no Node + MySQL.</p>
+      </div>
+      
+      <!-- Lado direito: Campo de busca e botão logout -->
+      <div class="row">
+        <!-- Campo de busca para filtrar usuários -->
+        <input id="search" placeholder="Pesquisar por nome ou e-mail..." style="min-width:280px" />
+        <!-- Botão para fazer logout (sair do sistema) -->
+        <button class="btn-ghost" id="logoutBtn">Sair</button>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL: Dividido em duas colunas (formulário e lista) -->
+    <div class="row">
+      <!-- COLUNA 1: Formulário de Criar/Editar Usuário -->
+      <div class="col">
+        <div class="card">
+          <h2>Formulário</h2>
+
+          <!-- Formulário para criar/editar usuários -->
+          <form id="userForm">
+            <!-- Campo oculto para armazenar o ID (usado em edição) -->
+            <input type="hidden" id="userId" />
+
+            <!-- Campo: Nome do Usuário -->
+            <label for="name">Nome</label>
+            <input id="name" type="text" placeholder="Nome completo" required />
+
+            <!-- Campo: Email do Usuário -->
+            <label for="email">E-mail</label>
+            <input id="email" type="email" placeholder="email@dominio.com" required />
+
+            <!-- Campo: Perfil (ADMIN ou USER) -->
+            <label for="profile">Perfil</label>
+            <select id="profile">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER" selected>USER</option>
+            </select>
+
+            <!-- Campo: Status (ATIVO ou INATIVO) -->
+            <label for="active">Status</label>
+            <select id="active">
+              <option value="1" selected>ATIVO</option>
+              <option value="0">INATIVO</option>
+            </select>
+
+            <!-- Campo: Senha do Usuário -->
+            <label for="password">Senha</label>
+            <input id="password" type="password" placeholder="Senha (será criptografada no backend)" />
+
+            <!-- Botões de ação do formulário -->
+            <div class="row" style="margin-top:14px;">
+              <!-- Botão para salvar novo/editar usuário -->
+              <button class="btn-primary" type="submit">Salvar</button>
+              <!-- Botão para limpar o formulário -->
+              <button class="btn-ghost" id="btnClear">Limpar</button>
+            </div>
+
+            <!-- Elemento para exibir mensagens (alertas) -->
+            <div id="alertUsers" class="alert" hidden></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- COLUNA 2: Tabela com Lista de Usuários -->
+      <div class="col">
+        <div class="card">
+          <h2>Lista</h2>
+
+          <!-- Tabela com os usuários cadastrados -->
+          <table>
+            <!-- Cabeçalho da tabela -->
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <!-- Corpo da tabela (preenchido dinamicamente pelo JavaScript) -->
+            <tbody id="usersTbody"></tbody>
+          </table>
+          <!-- Nota sobre soft delete -->          <p class="small" style="margin-top:10px">
+            “Excluir” aqui significa <b>inativar</b> (soft delete).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script JavaScript que inicializa a página -->
+  <script type="module">
+    // Importa a função de inicialização da página de usuários
+    import { initUsersPage } from "../assets/js/users.js";
+    
+    // Controle de acesso básico no front (o real será no backend com JWT)
+    // Se não houver token, redireciona para login
+    if (!localStorage.getItem("token")) window.location.href = "./login.html";
+    
+    // Inicializa a página com todos os handlers de eventos
+    initUsersPage();
+  </script>
+</body>
+</html>
